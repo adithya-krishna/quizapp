@@ -34,3 +34,21 @@ $textAlignments: (left, right, center);
     text-align: #{$value};
   }
 }
+
+/*----------  universal helper classes  ----------*/
+body, html{
+  margin: 0;
+  padding: 0;
+}
+
+.fullScreen{
+  width: 100vw;
+  height: 100vh;
+}
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

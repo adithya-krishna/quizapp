@@ -19,13 +19,7 @@ angular.module('quizApp',
     ])
     /*----------  all constants used within the app  ----------*/
     .constant('_', window._)
-    .constant('CONFIG', {
-        toastPositionTR: "top right",
-        toastPositionTL: "top left",
-        toastPositionBL: "bottom left",
-        toastPositionBR: "bottom right"
-    })
-    /*----------  loading icons used within the app  ----------*/
+    /*----------  loading icons and color palette used within the app  ----------*/
     .config(['$mdIconProvider', '$mdThemingProvider', function($mdIconProvider, $mdThemingProvider){
         $mdIconProvider
             .iconSet('avatars', 'app/images/icons/avatar-icons.svg', 24)
@@ -75,16 +69,10 @@ angular.module('quizApp',
             $rootScope.progressbar.setColor('#f1582c');
         }])
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+        /*----------  Routing within the app  ----------*/
         $locationProvider.html5Mode(false);
-        $urlRouterProvider.otherwise('/');
-
+        $urlRouterProvider.otherwise('/questions');
         $stateProvider
-            .state('main', {
-                url: '/',
-                templateUrl: 'app/views/main.html',
-                controller: 'AppCtrl',
-                authenticate: true
-            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'app/views/login.html',

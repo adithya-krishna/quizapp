@@ -72,6 +72,21 @@
 .center-align {
   text-align: center; }
 
+/*----------  universal helper classes  ----------*/
+body, html {
+  margin: 0;
+  padding: 0; }
+
+.fullScreen {
+  width: 100vw;
+  height: 100vh; }
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 .light-blue {
   background-color: #03a9f4 !important; }
 
@@ -175,20 +190,9 @@
   color: transparent !important; }
 
 /*=====  End of Helpers  ======*/
-body, html {
-  margin: 0;
-  padding: 0; }
-
-.fullScreen {
-  width: 100vw;
-  height: 100vh; }
-
-.truncate {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-
+/*=======================================
+=            General content            =
+=======================================*/
 .avatarIcon {
   height: 60px;
   width: 60px;
@@ -204,7 +208,7 @@ body, html {
     transition: all 0.2s ease-in-out;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
   .avatarIcon.selected svg {
-    box-shadow: 0 0 0 5px rgba(158, 158, 158, 0.75), 0 0 0 5px rgba(158, 158, 158, 0.75), 0 0 0 5px rgba(158, 158, 158, 0.75); }
+    box-shadow: 0 0 0 5px rgba(96, 125, 139, 0.75), 0 0 0 5px rgba(96, 125, 139, 0.75), 0 0 0 5px rgba(96, 125, 139, 0.75); }
   .avatarIcon svg {
     border-radius: 50%;
     -webkit-transition: all 0.2s ease-in-out;
@@ -320,5 +324,7 @@ body, html {
   @media only screen and (min-width: 768px) and (max-width: 992px) {
     .resultsWrapper .chartContainer {
       width: 70%; } }
+
+/*=====  End of General content  ======*/
 
 /*# sourceMappingURL=style.css.map */

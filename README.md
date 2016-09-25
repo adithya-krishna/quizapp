@@ -1,4 +1,4 @@
-# quizApp
+# Quiz App
 Quiz App - A demo project built on AngularJs And Angular-Material
 
 After downloading the project or cloning it, run the codes below to install all NPM and Bower dependencies.

@@ -4,7 +4,7 @@
  * @ngdoc service
  * @name quizApp.service: sessionService
  * @description
- * # sessionService
+ * # used to save and get details from the browsers local storage.
  * Service in the quizApp.
  */
 angular.module('quizApp')

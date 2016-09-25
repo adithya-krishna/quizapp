@@ -9,8 +9,10 @@
  */
 
 angular.module('quizApp')
-    .controller('LoginCtrl', ['$scope', '$mdDialog', '$state', 'CONFIG', 'sessionService', function ($scope, $mdDialog, $state, config, sessionService) {
-        $scope.user = {};
+    .controller('LoginCtrl', ['$scope', '$mdDialog', '$state', 'sessionService', function ($scope, $mdDialog, $state, sessionService) {
+        /*=================================
+         =            Variables            =
+         =================================*/
         $scope.avatars = [
             {name: 'svg-1', selected: false},
             {name: 'svg-2', selected: false},
@@ -29,6 +31,18 @@ angular.module('quizApp')
             {name: 'svg-15', selected: false},
             {name: 'svg-16', selected: false}
         ];
+        $scope.user = {};
+        /*=====  End of Variables  ======*/
+
+        /*========================================
+         =            Function Toolbox            =
+         ========================================*/
+        /**
+         Contains:
+            - submitLogin: used to save the user object in browser's local storage.
+            - selectAvatar: used to select the user avatar.
+            - noAvatarSelectedAlert: helper to display alert in case an avatar isn't selected.
+         */
 
         $scope.noAvatarSelectedAlert = function ($evt) {
             var noAvatarSelectedAlert = $mdDialog.alert()
@@ -56,4 +70,6 @@ angular.module('quizApp')
             sessionService.setUserDetails(user);
             $state.go('questions');
         };
+        /*=====  End of Function Toolbox  ======*/
+
     }]);
