@@ -1,0 +1,81 @@
+<md-content class="fullScreen" md-theme="lightBlueTheme" id="popupContainer">
+    <md-toolbar class="transparent">
+        <div class="md-toolbar-tools">
+            <div layout="row" class="navbarUserInfoContainer">
+                <md-icon class="md-avatar navbarAvatarIcon" md-svg-icon="avatars:{{activeUser.avatar}}"></md-icon>
+                <span flex-offset="5"></span>
+                <div class="navbarUsername truncate">
+                    <md-tooltip md-direction="bottom">
+                        {{activeUser.username}}
+                    </md-tooltip>
+                    {{activeUser.username}}
+                </div>
+                <span flex></span>
+            </div>
+            <span flex></span>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+                    <md-icon md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item><md-button ng-click="logoutUser()">Logout</md-button></md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+    <md-tabs md-autoselect md-selected="selectedTabIndex" md-border-bottom md-stretch-tabs="always" md-dynamic-height>
+        <md-tab ng-disabled="qValue.isTabDisabled" ng-repeat="(qKey, qValue) in questions" md-on-select="showResults(qValue.resultsTab)">
+            <md-tab-label>
+                <span ng-show="(mdMedia('xs') || mdMedia('gt-xs')) && !mdMedia('gt-md')">
+                    {{qValue.titleSmall}}
+                </span>
+                <span ng-show="mdMedia('gt-md')">
+                    {{qValue.title}}
+                </span>
+            </md-tab-label>
+            <md-tab-body>
+                <div class="contentWrapper" ng-hide="qValue.resultsTab">
+                    <div class="imgContainer" style="background-image: url('{{qValue.image}}')"></div>
+                    <p class="center-align"
+                       ng-class="{'md-title': mdMedia('xs'), 'md-headline': (mdMedia('sm') || mdMedia('md')), 'md-display-1': mdMedia('gt-md')}">
+                        {{qValue.questionString}}
+                    </p>
+                    <div layout="row" layout-wrap>
+                        <div flex-xs="100" flex="50" ng-repeat="answer in qValue.answerOptions track by $index">
+                            <md-button class="left-align optionButtons"
+                                       ng-class="{'selected': (qValue.chosenAnswer === $index),
+                                           'correct': (testComplete && (qValue.correctAnswer === $index)),
+                                           'incorrect': (testComplete && (qValue.chosenAnswer === $index && !(qValue.correctAnswer === $index)))}"
+                                       ng-disabled="testComplete"
+                                       md-ink-ripple="#689F38"
+                                       ng-click="answerSelected(qValue, qKey, $index)">
+                                <div class="answerIndex">{{answerIndexMap[$index]}}</div>
+                                <div class="answerText">{{answer}}</div>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsWrapper marginTop" ng-show="qValue.resultsTab">
+                    <div class="chartContainer">
+                        <canvas id="line"
+                                class="chart chart-line"
+                                chart-data="chart.data"
+                                chart-dataset-override="chart.datasetOverride"
+                                chart-options="chart.options"
+                                chart-labels="chart.labels">
+                        </canvas>
+                    </div>
+                    <div class="info">
+                        <p class="center-align"
+                           ng-class="{'md-title': mdMedia('xs'), 'md-headline': (mdMedia('sm') || mdMedia('md')), 'md-display-1': mdMedia('gt-md')}">
+                            {{successMessage[successMessageIndex]}} Each question was worth 20 points and you scored {{testResult || 0}} points!
+                        </p>
+                        <div class="center-align">
+                            <md-button class="md-raised md-accent md-hue-2" ng-click="moveToFirstTab();">Click here to review your answers</md-button>
+                        </div>
+                    </div>
+                </div>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+</md-content>

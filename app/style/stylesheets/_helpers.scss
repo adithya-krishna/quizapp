@@ -1,0 +1,36 @@
+/*----------  helpers to set or remove margins and paddings  ----------*/
+$positions: (top, bottom, left, right, "");
+$scopes: ( "Margin": $positions, "Padding": $positions);
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@each $sKey, $sValue in $scopes{
+  @each $key, $value in $sValue{
+    @if ( str-length($key) == 0 ){
+      .add#{$sKey}s{
+        #{to-lower-case($sKey)}: 10px;
+      }
+      .remove#{$sKey}s{
+        #{to-lower-case($sKey)}: 0;
+      }
+    } @else {
+      .#{to-lower-case($sKey)}#{capitalize($key)}{
+        #{to-lower-case($sKey)}-#{$key}: 10px;
+      }
+      .remove#{$sKey}#{capitalize($key)}{
+        #{to-lower-case($sKey)}-#{$key}: 0;
+      }
+    }
+  }
+}
+
+/*----------  helpers for text alignment  ----------*/
+$textAlignments: (left, right, center);
+
+@each $value in $textAlignments{
+  .#{$value}-align{
+    text-align: #{$value};
+  }
+}

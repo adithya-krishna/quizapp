@@ -1,0 +1,40 @@
+<div md-theme="lightBlueTheme">
+    <md-content layout="row" layout-align="center center" class="fullScreen light-blue">
+        <div flex-xs flex-gt-md="33">
+            <md-card>
+                <md-card-title layout="row">
+                    <md-card-title-text>
+                        <span class="md-headline center-align">Choose your user name and avatar</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content class="removePaddingBottom">
+                    <div class="center-align marginBottom">
+                        <md-icon class="md-avatar avatarIcon"
+                                 ng-class="{'selected': avatar.selected}"
+                                 ng-click="selectAvatar($index)"
+                                 md-svg-icon="avatars:{{avatar.name}}"
+                                 ng-repeat="avatar in avatars track by $index"></md-icon>
+                    </div>
+                    <form name="loginForm" layout="column" ng-submit="submitLogin(user, $event, loginForm.$valid)">
+                        <md-input-container class="md-primary">
+                            <label>User Name</label>
+                            <input type="text"
+                                   name="userName"
+                                   md-no-asterisk
+                                   autocomplete="off"
+                                   ng-model="user.username"
+                                   required="true"/>
+                            <div ng-messages="loginForm.userName.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <input type="submit" class="hide"/>
+                    </form>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="submitLogin(user, $event, loginForm.$valid)" class="md-raised md-accent md-hue-2" ng-disabled="loginForm.$invalid && loginForm.userName.$touched">Login</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+</div>
